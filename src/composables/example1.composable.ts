@@ -1,8 +1,9 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import { Timer } from 'three/addons/misc/Timer.js'
+
 import GUI from 'lil-gui'
-import { resizeEvent } from '../utility/resizeEvent'
+import { resizeEvent } from '../utility/resizeEvent';
+import { eachFrame } from '../utility/eachFrame';
 
 export const useExample1Scene = (canvas: HTMLCanvasElement) => {
     const gui = new GUI()
@@ -57,26 +58,11 @@ export const useExample1Scene = (canvas: HTMLCanvasElement) => {
     /**
      * Animate
      */
-    const timer = new Timer()
+    eachFrame(scene,camera,renderer,(el: number) => {
+        console.log(el)
+    }, controls)
 
+    // Events
     resizeEvent(sizes, camera, renderer);
-
-    const tick = () =>
-    {
-        // Timer
-        timer.update()
-        const elapsedTime = timer.getElapsed()
-
-        // Update controls
-        controls.update()
-
-        // Render
-        renderer.render(scene, camera)
-
-        // Call tick again on the next frame
-        window.requestAnimationFrame(tick)
-    }
-
-    tick()
 }
 
