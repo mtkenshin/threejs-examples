@@ -8,7 +8,9 @@ export const addSceneRenderer = (canvas: HTMLCanvasElement, sizes: ISizes) => {
         canvas: canvas
     })
     renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    if(window) {
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    }
     return renderer
 }
 

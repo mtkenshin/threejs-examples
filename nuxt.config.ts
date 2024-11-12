@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   buildDir: 'build',
   css: ['~/src/assets/scss/main.scss'],
-  ssr: true,
+  ssr: false,
   modules: ['@nuxt/eslint'],
   vite: {
     css: {
@@ -24,5 +24,5 @@ export default defineNuxtConfig({
     '@composables':  '/src/composables/',
     '@interfaces':  '/src/interfaces/',
     '@utility': '/src/utility/'
-  }
+  },
 })

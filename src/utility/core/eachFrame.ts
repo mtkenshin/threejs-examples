@@ -15,17 +15,19 @@ const timer = new Timer();
  * Use this function if you want to run this on every frame. Used for updating and rendering.
  */
 export const eachFrame = (scene: Scene, camera:PerspectiveCamera, renderer: WebGLRenderer, callback: Function, controls?: OrbitControls) => {
-    // Timer
-    timer.update()
-    const elapsedTime = timer.getElapsed();
-    callback(elapsedTime)
+    if(typeof window !== 'undefined') {
+        // Timer
+        timer.update()
+        const elapsedTime = timer.getElapsed();
+        callback(elapsedTime)
 
-    // Update controls
-    controls?.update()
-    
-    // Render
-    renderer.render(scene, camera)
+        // Update controls
+        controls?.update()
+        
+        // Render
+        renderer.render(scene, camera)
 
-    // Call tick again on the next frame
-    window.requestAnimationFrame(() => eachFrame(scene, camera, renderer, callback, controls))
+        // Call tick again on the next frame
+        window.requestAnimationFrame(() => eachFrame(scene, camera, renderer, callback, controls))
+    }
 }

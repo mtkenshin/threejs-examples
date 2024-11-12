@@ -11,6 +11,9 @@ const loadParticleTextures = (particleFileName: string) => {
     return textureLoader.load(`/textures/particles/${particleFileName}`);
 }
 
+interface IParameters {
+    count: number;
+}
 export class GalaxyGenerator {
     private scene;
     private canvas;
@@ -19,6 +22,7 @@ export class GalaxyGenerator {
     private sizes: ISizes;
     private controls;
     private gui;
+    private parameters: IParameters;
 
     constructor(canvas: HTMLCanvasElement, sizes: ISizes) {
         this.canvas = canvas;
@@ -28,24 +32,40 @@ export class GalaxyGenerator {
         this.camera = addSceneCamera(this.scene, sizes);
         this.controls = addSceneOrbitalControls(this.camera, canvas);
         this.gui = new dat.GUI();
+        this.parameters = {
+            count: 1000
+        }
     }
 
 
-    addObjects = () => {
-        const cube = new THREE.Mesh(
-            new THREE.BoxGeometry(),
-            new THREE.MeshStandardMaterial({color: 'white'})
+    generateGalaxy = () => {
+        const geometry = new THREE.BufferGeometry()
+        const positions = new Float32Array(this.parameters.count * 3)
+        
+        for(let i = 0; i< this.parameters.count; i++) {
+            const x = i * 3;
+            const y = x + 1;
+            const z = y + 1;
+
+            positions[x] = Math.random();
+            positions[y] = Math.random();
+            positions[z] = Math.random();
+        }
+
+        geometry.setAttribute(
+            'position',
+            new THREE.BufferAttribute(positions, 3)
         )
-        this.scene.add(cube);
+
+
     }
 
     start = () => {
         addResizeEvent(this.sizes,this.camera, this.renderer);
         addSceneLighting(this.scene);
-
-
-        this.addObjects();
-
+        
+        this.generateGalaxy();
+        
         eachFrame(this.scene, this.camera, this.renderer, (elapsedTime: number) => {
 
         }, this.controls)
