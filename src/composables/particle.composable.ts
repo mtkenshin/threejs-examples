@@ -2,9 +2,9 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 import GUI from 'lil-gui'
-import { resizeEvent } from '../utility/resizeEvent';
-import { eachFrame } from '../utility/eachFrame';
-import type { ISizes } from 'src/interfaces/sizes.interfaces';
+import { addResizeEvent } from '@utility/core/addResizeEvent';
+import { eachFrame } from '@utility/core/eachFrame';
+import { addSceneCamera, addSceneLighting, addSceneOrbitalControls, addSceneRenderer } from '@utility/core/commonFunctions';
 
 const textureLoader = new THREE.TextureLoader();
 
@@ -12,49 +12,10 @@ const loadParticleTextures = (particleFileName: string) => {
     return textureLoader.load(`/textures/particles/${particleFileName}`);
 }
 
-const addSceneLighting = (scene: THREE.Scene) => {
-    // Ambient Light
-    const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
-    scene.add(ambientLight)
-
-    // Directional light
-    const directionalLight = new THREE.DirectionalLight('#ffffff', 1.5)
-    directionalLight.position.set(3, 2, -8)
-    scene.add(directionalLight)
-
-    return { ambientLight, directionalLight }
-}
-
-const addSceneCamera = (scene:THREE.Scene, sizes: ISizes) => {
-    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-    camera.position.x = 4
-    camera.position.y = 2
-    camera.position.z = 5
-    scene.add(camera)
-    return camera;
-}
-
-const addSceneOrbitalControls = (camera: THREE.PerspectiveCamera, canvas: HTMLCanvasElement) => {
-    // Controls
-    const controls = new OrbitControls(camera, canvas);
-    controls.enableDamping = true;
-
-    return controls
-}
-
-const addSceneRenderer = (canvas: HTMLCanvasElement, sizes: ISizes) => {
-    const renderer = new THREE.WebGLRenderer({
-        canvas: canvas
-    })
-    renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    return renderer
-}
 const addSceneObjects = (scene: THREE.Scene) => {
     //addParticles1(scene);
-    addParticles2(scene);
-
-
+    const particles = addParticles2(scene);
+    return { particles };
 }
 const addParticles1 = (scene: THREE.Scene) => {
     const particles = new THREE.Points(
@@ -68,34 +29,36 @@ const addParticles1 = (scene: THREE.Scene) => {
 }
 const addParticles2 = (scene: THREE.Scene) => {
     const particlesGeometry = new THREE.BufferGeometry();
-    const count = 5000;
+    const count = 20000;
     const positions = new Float32Array(count * 3);
+    const colors = new Float32Array(count * 3);
 
-    for (let i = 0; i< count * 3; i++) {
+    for (let i = 0; i < count * 3; i++) {
         positions[i] = (Math.random() - 0.5) * 10;
+        colors[i] = Math.random();
     } 
-    particlesGeometry.setAttribute(
-        'position',
-        new THREE.BufferAttribute(positions, 3)
-    )
+    particlesGeometry.setAttribute('position',new THREE.BufferAttribute(positions, 3))
+    particlesGeometry.setAttribute('color',new THREE.BufferAttribute(colors, 3))
 
-    const particlesMaterial = new THREE.PointsMaterial()
-    particlesMaterial.size = 0.1;
-    particlesMaterial.sizeAttenuation = true;
-    particlesMaterial.alphaMap = loadParticleTextures('2.png');
-    // particlesMaterial.alphaTest = 0.001; //dont render black part of texture
-    particlesMaterial.transparent = true; // When using alpha add transparent
-    // particlesMaterial.depthTest = false;
-    particlesMaterial.depthWrite = false
+    const particlesMaterial = new THREE.PointsMaterial({
+        size: 0.1,
+        sizeAttenuation: true,
+        alphaMap: loadParticleTextures('2.png'),
+        transparent: true,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+        vertexColors: true
+    })
 
     const particles = new THREE.Points(
         particlesGeometry,
         particlesMaterial
     )
     scene.add(particles)
+    return particles;
 }
 
-export const useExample1Scene = (canvas: HTMLCanvasElement) => {
+export const useParticleScene = (canvas: HTMLCanvasElement) => {
     const sizes = {
         width: window.innerWidth,
         height: window.innerHeight
@@ -110,13 +73,24 @@ export const useExample1Scene = (canvas: HTMLCanvasElement) => {
     
     
     addSceneLighting(scene);
-    addSceneObjects(scene);
+    const { particles } = addSceneObjects(scene);
 
-    eachFrame(scene,camera,renderer,(el: number) => {
-        //console.log(el)
+    eachFrame(scene, camera, renderer, (elapsedTime: number) => {
+        // Update particles
+        const animationSpeed = 0.2;
+        const count = particles.geometry.attributes.position.array.length / 3;
+
+        for(let i = 0; i < count; i++) {
+            const x = i * 3
+            const y = x + 1;
+            const z = x + 2;
+            const xPos = particles.geometry.attributes.position.array[x];
+            particles.geometry.attributes.position.array[y] = Math.sin(elapsedTime + xPos);
+        }
+        particles.geometry.attributes.position.needsUpdate = true;
     }, controls)
 
     // Events
-    resizeEvent(sizes, camera, renderer);
+    addResizeEvent(sizes, camera, renderer);
 }
 

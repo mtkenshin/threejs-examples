@@ -4,6 +4,16 @@ import type { OrbitControls } from 'three/examples/jsm/Addons.js';
 
 const timer = new Timer();
 
+/**
+ * 
+ * @param scene Requires a Three JS Scene
+ * @param camera Requires a Three JS Perspective Camera
+ * @param renderer Requires a WebGLRenderer
+ * @param callback Callback after each frame
+ * @param controls Orbital Controls
+ * 
+ * Use this function if you want to run this on every frame. Used for updating and rendering.
+ */
 export const eachFrame = (scene: Scene, camera:PerspectiveCamera, renderer: WebGLRenderer, callback: Function, controls?: OrbitControls) => {
     // Timer
     timer.update()

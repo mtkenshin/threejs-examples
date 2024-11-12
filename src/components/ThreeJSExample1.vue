@@ -4,13 +4,19 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { type Ref, ref, watch } from 'vue';
-import { useExample1Scene } from '../composables/particle.composable';
+import { type Ref, ref } from 'vue';
+
+import { useParticleScene } from '@composables/particle.composable';
+import { GalaxyGenerator } from '@composables/galaxy.composable';
+
 const example1: Ref<HTMLCanvasElement | null> = ref(null);
 
 onMounted(() => {
     if(example1.value !== null) {
-        useExample1Scene(example1.value)
+        //useParticleScene(example1.value)
+        const threeJSScene = new GalaxyGenerator(example1.value, {width: window.innerWidth, height: window.innerHeight});
+        console.log(threeJSScene)
+        threeJSScene.start();
     }
 })
 

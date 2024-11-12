@@ -1,7 +1,7 @@
-import type { ISizes } from "src/interfaces/sizes.interfaces"
+import type { ISizes } from "@interfaces/sizes.interfaces"
 import type { PerspectiveCamera, WebGLRenderer } from "three"
 
-export const resizeEvent = (sizes: ISizes, camera: PerspectiveCamera, renderer: WebGLRenderer) => {
+export const addResizeEvent = (sizes: ISizes, camera: PerspectiveCamera, renderer: WebGLRenderer) => {
     window.addEventListener('resize', () =>
     {
         // Update sizes
