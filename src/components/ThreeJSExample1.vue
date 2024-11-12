@@ -5,7 +5,7 @@
 </template>
 <script lang="ts" setup>
 import { type Ref, ref, watch } from 'vue';
-import { useExample1Scene } from '../composables/example1.composable';
+import { useExample1Scene } from '../composables/particle.composable';
 const example1: Ref<HTMLCanvasElement | null> = ref(null);
 
 onMounted(() => {
