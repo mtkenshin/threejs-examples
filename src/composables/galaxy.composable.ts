@@ -159,7 +159,7 @@ export class GalaxyGenerator {
     const outsideColor = new THREE.Color(this.parameters.outsideColor);
 
     for (let i = 0; i < this.parameters.count; i++) {
-                                                                        const x = i * 3;
+      const x = i * 3;
       const y = x + 1;
       const z = y + 1;
 
