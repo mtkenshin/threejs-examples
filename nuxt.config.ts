@@ -17,8 +17,7 @@ export default defineNuxtConfig({
     }
   },
   devServer: {
-    host: "192.168.1.209",  
-    port: 3000,
+    
   },
   alias: {
     '@composables':  '/src/composables/',

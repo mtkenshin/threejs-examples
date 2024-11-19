@@ -1,7 +1,4 @@
 import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-
-import GUI from 'lil-gui'
 import { addResizeEvent } from '@utility/core/addResizeEvent';
 import { eachFrame } from '@utility/core/eachFrame';
 import { addSceneCamera, addSceneLighting, addSceneOrbitalControls, addSceneRenderer } from '@utility/core/commonFunctions';
@@ -63,7 +60,6 @@ export const useParticleScene = (canvas: HTMLCanvasElement) => {
         width: window.innerWidth,
         height: window.innerHeight
     }
-    const gui = new GUI();
     const scene = new THREE.Scene();
 
     // Add Camera

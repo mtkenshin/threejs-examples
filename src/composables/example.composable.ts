@@ -1,12 +1,12 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-import GUI from 'lil-gui'
+import * as dat from 'dat-gui'
 import { addResizeEvent } from '../utility/core/addResizeEvent';
 import { eachFrame } from '../utility/core/eachFrame';
 
 export const useExample1Scene = (canvas: HTMLCanvasElement) => {
-    const gui = new GUI()
+    const gui = new dat.GUI()
     const scene = new THREE.Scene()
 
     const sphere = new THREE.Mesh(
