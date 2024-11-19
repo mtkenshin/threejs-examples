@@ -4,21 +4,24 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host 0.0.0.0",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nuxt/eslint": "^0.6.1",
+    "@nuxtjs/eslint-module": "^4.1.0",
     "@types/three": "^0.169.0",
-    "lil-gui": "^0.20.0",
+    "dat-gui": "^0.5.0",
     "nuxt": "^3.14.159",
     "three": "^0.170.0",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@types/dat-gui": "^0.6.3",
+    "prettier": "^3.3.3",
     "sass": "^1.80.6"
   }
 }

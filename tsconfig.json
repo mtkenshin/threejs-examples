@@ -6,8 +6,10 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@components/*": ["./src/components/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
       "@composables/*": ["./src/composables/*"],
       "@assets/*": ["./src/assets/*"],
+      "@utility/*": ["./src/utility/*"]
     }
   }
 }

@@ -4,14 +4,17 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { type Ref, ref, watch } from 'vue';
-import { useExample1Scene } from '../composables/example1.composable';
+import { type Ref, ref } from 'vue';
+import { GalaxyGenerator } from '@composables/galaxy.composable';
+
 const example1: Ref<HTMLCanvasElement | null> = ref(null);
 
 onMounted(() => {
-    if(example1.value !== null) {
-        useExample1Scene(example1.value)
+    if(example1.value !== null && window) {
+        const threeJSScene = new GalaxyGenerator(example1.value, {width: window.innerWidth, height: window.innerHeight});
+        threeJSScene.start();
     }
 })
+
 
 </script>
