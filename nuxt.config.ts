@@ -11,17 +11,15 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
-          additionalData: '@use "~/src/assets/scss/_colors.scss" as *;'
-        }
-      }
-    }
+          additionalData: '@use "~/src/assets/scss/_colors.scss" as *;',
+        },
+      },
+    },
   },
-  devServer: {
-    
-  },
+  devServer: {},
   alias: {
-    '@composables':  '/src/composables/',
-    '@interfaces':  '/src/interfaces/',
-    '@utility': '/src/utility/'
+    '@composables': '/src/composables/',
+    '@interfaces': '/src/interfaces/',
+    '@utility': '/src/utility/',
   },
-})
+});
