@@ -14,7 +14,5 @@ onMounted(() => {
         const threeJSScene = new GalaxyGenerator(example1.value, {width: window.innerWidth, height: window.innerHeight});
         threeJSScene.start();
     }
-})
-
-
+});
 </script>
