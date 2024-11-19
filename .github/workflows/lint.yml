@@ -3,10 +3,12 @@ name: Lint Codebase
 on:
   pull_request:
     branches:
-      - main
+      - master
+      - development
   push:
     branches:
-      - main
+      - master
+      - development
 
 permissions:
   contents: read
