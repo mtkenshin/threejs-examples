@@ -15,4 +15,5 @@ onMounted(() => {
         threeJSScene.start();
     }
 });
+
 </script>
