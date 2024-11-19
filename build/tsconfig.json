@@ -2,117 +2,45 @@
 {
   "compilerOptions": {
     "paths": {
-      "nitropack/types": [
-        "../node_modules/nitropack/types"
-      ],
-      "nitropack": [
-        "../node_modules/nitropack"
-      ],
-      "defu": [
-        "../node_modules/defu"
-      ],
-      "h3": [
-        "../node_modules/h3"
-      ],
-      "consola": [
-        "../node_modules/consola"
-      ],
-      "ofetch": [
-        "../node_modules/ofetch"
-      ],
-      "@unhead/vue": [
-        "../node_modules/@unhead/vue"
-      ],
-      "@nuxt/devtools": [
-        "../node_modules/@nuxt/devtools"
-      ],
-      "@vue/runtime-core": [
-        "../node_modules/@vue/runtime-core"
-      ],
-      "@vue/compiler-sfc": [
-        "../node_modules/@vue/compiler-sfc"
-      ],
+      "nitropack/types": ["../node_modules/nitropack/types"],
+      "nitropack": ["../node_modules/nitropack"],
+      "defu": ["../node_modules/defu"],
+      "h3": ["../node_modules/h3"],
+      "consola": ["../node_modules/consola"],
+      "ofetch": ["../node_modules/ofetch"],
+      "@unhead/vue": ["../node_modules/@unhead/vue"],
+      "@nuxt/devtools": ["../node_modules/@nuxt/devtools"],
+      "@vue/runtime-core": ["../node_modules/@vue/runtime-core"],
+      "@vue/compiler-sfc": ["../node_modules/@vue/compiler-sfc"],
       "unplugin-vue-router/client": [
         "../node_modules/unplugin-vue-router/client"
       ],
-      "@nuxt/schema": [
-        "../node_modules/@nuxt/schema"
-      ],
-      "nuxt": [
-        "../node_modules/nuxt"
-      ],
-      "~": [
-        ".."
-      ],
-      "~/*": [
-        "../*"
-      ],
-      "@": [
-        ".."
-      ],
-      "@/*": [
-        "../*"
-      ],
-      "~~": [
-        ".."
-      ],
-      "~~/*": [
-        "../*"
-      ],
-      "@@": [
-        ".."
-      ],
-      "@@/*": [
-        "../*"
-      ],
-      "#shared": [
-        "../shared"
-      ],
-      "assets": [
-        "../assets"
-      ],
-      "public": [
-        "../public"
-      ],
-      "public/*": [
-        "../public/*"
-      ],
-      "#build": [
-        "."
-      ],
-      "#build/*": [
-        "./*"
-      ],
-      "@composables": [
-        "../../../../../../..//src/composables"
-      ],
-      "@interfaces": [
-        "../../../../../../..//src/interfaces"
-      ],
-      "@utility": [
-        "../../../../../../..//src/utility"
-      ],
-      "#app": [
-        "../node_modules/nuxt/dist/app"
-      ],
-      "#app/*": [
-        "../node_modules/nuxt/dist/app/*"
-      ],
-      "vue-demi": [
-        "../node_modules/nuxt/dist/app/compat/vue-demi"
-      ],
-      "#vue-router": [
-        "../node_modules/vue-router"
-      ],
-      "#imports": [
-        "./imports"
-      ],
-      "#app-manifest": [
-        "./manifest/meta/dev"
-      ],
-      "#components": [
-        "./components"
-      ]
+      "@nuxt/schema": ["../node_modules/@nuxt/schema"],
+      "nuxt": ["../node_modules/nuxt"],
+      "~": [".."],
+      "~/*": ["../*"],
+      "@": [".."],
+      "@/*": ["../*"],
+      "~~": [".."],
+      "~~/*": ["../*"],
+      "@@": [".."],
+      "@@/*": ["../*"],
+      "#shared": ["../shared"],
+      "assets": ["../assets"],
+      "public": ["../public"],
+      "public/*": ["../public/*"],
+      "#build": ["."],
+      "#build/*": ["./*"],
+      "@composables": ["../../../../../../..//src/composables"],
+      "@interfaces": ["../../../../../../..//src/interfaces"],
+      "@utility": ["../../../../../../..//src/utility"],
+      "#app": ["../node_modules/nuxt/dist/app"],
+      "#app/*": ["../node_modules/nuxt/dist/app/*"],
+      "vue-demi": ["../node_modules/nuxt/dist/app/compat/vue-demi"],
+      "#vue-router": ["../node_modules/vue-router"],
+      "#imports": ["./imports"],
+      "#app-manifest": ["./manifest/meta/dev"],
+      "#components": ["./components"]
     },
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -128,12 +56,7 @@
     "noImplicitOverride": true,
     "module": "preserve",
     "noEmit": true,
-    "lib": [
-      "ESNext",
-      "dom",
-      "dom.iterable",
-      "webworker"
-    ],
+    "lib": ["ESNext", "dom", "dom.iterable", "webworker"],
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "types": [],
