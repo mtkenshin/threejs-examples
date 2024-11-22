@@ -15,7 +15,9 @@
   "dependencies": {
     "@nuxt/eslint": "^0.6.1",
     "@nuxtjs/eslint-module": "^4.1.0",
+    "@types/cannon": "^0.1.13",
     "@types/three": "^0.169.0",
+    "cannon": "^0.6.2",
     "dat-gui": "^0.5.0",
     "nuxt": "^3.14.159",
     "three": "^0.170.0",
